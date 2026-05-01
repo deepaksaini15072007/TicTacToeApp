@@ -1,51 +1,49 @@
-import java.util.Random;
-
 public class tictactoe {
 
     static char[][] board = {
-            {'-', '-', '-'},
+            {'X', 'X', 'X'},
             {'-', '-', '-'},
             {'-', '-', '-'}
     };
 
-    static char computerSymbol = 'O';
-
     public static void main(String[] args) {
 
-        computerMove();
-
-        printBoard();
+        System.out.println(hasWon('X'));
     }
 
-    static void computerMove() {
+    static boolean hasWon(char symbol) {
 
-        Random random = new Random();
-
-        while (true) {
-
-            int slot = random.nextInt(9) + 1;
-
-            int row = (slot - 1) / 3;
-            int col = (slot - 1) % 3;
-
-            if (board[row][col] == '-') {
-
-                board[row][col] = computerSymbol;
-                break;
-            }
-        }
-    }
-
-    static void printBoard() {
-
+    
         for (int i = 0; i < 3; i++) {
-
-            for (int j = 0; j < 3; j++) {
-
-                System.out.print(board[i][j] + " ");
+            if (board[i][0] == symbol &&
+                board[i][1] == symbol &&
+                board[i][2] == symbol) {
+                return true;
             }
-
-            System.out.println();
         }
+
+    
+        for (int j = 0; j < 3; j++) {
+            if (board[0][j] == symbol &&
+                board[1][j] == symbol &&
+                board[2][j] == symbol) {
+                return true;
+            }
+        }
+
+        
+        if (board[0][0] == symbol &&
+            board[1][1] == symbol &&
+            board[2][2] == symbol) {
+            return true;
+        }
+
+        if (board[0][2] == symbol &&
+            board[1][1] == symbol &&
+            board[2][0] == symbol) {
+            return true;
+        }
+
+        return false;
     }
 }
