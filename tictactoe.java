@@ -1,25 +1,16 @@
 public class tictactoe {
 
-    static char[][] board = {
-            {'-', '-', '-'},
-            {'-', '-', '-'},
-            {'-', '-', '-'}
-    };
+    static char[][] board = new char[3][3];
 
     public static void main(String[] args) {
 
-        System.out.println(isValidMove(1, 1));
+        placeMove(0, 0, 'X');
+
+        System.out.println(board[0][0]);
     }
 
-    static boolean isValidMove(int row, int col) {
+    static void placeMove(int row, int col, char symbol) {
 
-        if (row >= 0 && row < 3 && col >= 0 && col < 3) {
-
-            if (board[row][col] == '-') {
-                return true;
-            }
-        }
-
-        return false;
+        board[row][col] = symbol;
     }
 }
